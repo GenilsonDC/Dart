@@ -1,0 +1,9 @@
+name: operacoes_bancarias
+description: A first Dart project for studies with test
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+
+dev_dependencies:
+  test: ^1.25.7
