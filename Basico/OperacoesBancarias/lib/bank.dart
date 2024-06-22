@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'src/services/bank_service.dart';
+
 void main() {
-  double saldo = 0;
+  final bankService = BankService();
   bool continuar = true;
   while (continuar) {
     print("************ MENU ************");
@@ -25,8 +27,8 @@ void main() {
         if (deposito == null || deposito <= 0) {
           print("O valor deve ser maior que 0.0\n");
         } else {
-          saldo += deposito;
-          print("Saldo atual: ${saldo.toStringAsFixed(1)}\n");
+          double saldo = bankService.depositar(deposito);
+          print("Saldo atual: ${saldo.toStringAsFixed(2)}\n");
         }
         break;
 
@@ -36,17 +38,17 @@ void main() {
         if (saque == null || saque <= 0) {
           print("O valor deve ser maior que 0.0\n");
         } else {
-          if (saque > saldo) {
-            print("Saldo insuficiente\n");
+          try {
+            double saldo = bankService.sacar(saque);
             print("Saldo atual: ${saldo.toStringAsFixed(2)}\n");
-          } else {
-            saldo -= saque;
-            print("Saldo atual: ${saldo.toStringAsFixed(2)}\n");
+          } catch (e) {
+            print("$e\n");
           }
         }
         break;
 
       case 3:
+        double saldo = bankService.consultarSaldo();
         print("Saldo atual: ${saldo.toStringAsFixed(2)}\n");
         break;
       case 0:
