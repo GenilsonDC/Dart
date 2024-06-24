@@ -1,5 +1,6 @@
 void main() {
   Device myDevice = Device(deviceStyle: DeviceType.smartPhone);
+  print(myDevice);
 }
 
 class Device {
